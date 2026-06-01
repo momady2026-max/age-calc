@@ -1,0 +1,84 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User configuration and preferences",
+      "type": "object",
+      "properties": {
+        "savedPin": { "type": "string", "description": "The 6-digit secure PIN" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last updated timestamp" }
+      }
+    },
+    "Folder": {
+      "title": "Folder",
+      "description": "A customized folder category",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "icon": { "type": "string" },
+        "color": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "ownerId": { "type": "string" }
+      },
+      "required": ["id", "name", "icon", "color", "createdAt"]
+    },
+    "Note": {
+      "title": "Note",
+      "description": "A notebook note",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "folderId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "image": { "type": "string" },
+        "color": { "type": "string" },
+        "isPinned": { "type": "boolean" },
+        "isDeleted": { "type": "boolean" },
+        "deletedAt": { "type": "string", "format": "date-time" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "order": { "type": "number" },
+        "ownerId": { "type": "string" }
+      },
+      "required": ["id", "folderId", "title", "content", "color", "isPinned", "isDeleted", "createdAt", "updatedAt", "order"]
+    },
+    "SafeFile": {
+      "title": "SafeFile",
+      "description": "A secure, encrypted or hidden file",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "size": { "type": "string" },
+        "rawType": { "type": "string" },
+        "extension": { "type": "string" },
+        "category": { "type": "string" },
+        "dataUrl": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "ownerId": { "type": "string" }
+      },
+      "required": ["id", "name", "size", "rawType", "extension", "category", "dataUrl", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "User preferences documents"
+    },
+    "users/{userId}/folders/{folderId}": {
+      "schema": "Folder",
+      "description": "Folders belonging to the user"
+    },
+    "users/{userId}/notes/{noteId}": {
+      "schema": "Note",
+      "description": "Notes belonging to the user"
+    },
+    "users/{userId}/safeFiles/{fileId}": {
+      "schema": "SafeFile",
+      "description": "Secure files belonging to the user"
+    }
+  }
+}

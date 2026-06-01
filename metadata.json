@@ -1,0 +1,6 @@
+{
+  "name": "حافظتي - NoteBox",
+  "description": "تطبيق ملاحظات وحافظة نصوص ذكي وعصري لتنظيم الأفكار، حفظ الروابط والصور، وتصنيف المحتوى في مجلدات بلمسة جمالية.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
