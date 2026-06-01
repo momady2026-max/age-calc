@@ -16,18 +16,22 @@ jobs:
         with:
           node-version: 18
 
-      - name: Clean Cache & Install Dependencies
+      - name: Install Dependencies
         run: |
           rm -f package-lock.json
           npm install --legacy-peer-deps
+
+      - name: Force Tailwind Native Binding
+        run: |
+          npm install @tailwindcss/oxide-linux-x64-gnu --save-optional --legacy-peer-deps
 
       - name: Build Web Project
         run: npm run build
 
       - name: Install Capacitor & Configure Android
         run: |
-          npm install @capacitor/core @capacitor/cli @capacitor/android
-          npx cap init "Age Calc" "com.momady.agecalc" --web-dir=dist
+          npm install @capacitor/core @capacitor/cli @capacitor/android --legacy-peer-deps
+          npx cap init "Age Calc" "com.momady.agecalc" --web-dir=dist --skip-appid-validation
           npx cap add android
           npx cap sync android
 
@@ -48,4 +52,3 @@ jobs:
         with:
           name: app-debug
           path: android/app/build/outputs/apk/debug/app-debug.apk
-
